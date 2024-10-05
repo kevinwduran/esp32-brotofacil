@@ -5,9 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='styles.css') }}"
+    />
 </head>
 <body>
-    <div class="container box-access">
+    <div class="container box-access py-4">
         <h1 class="title">Login</h1>
         <form method="POST">
             <div class="form-group">

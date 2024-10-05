@@ -28,21 +28,21 @@
 
       <div class="button-container mt-4">
         <!-- Botão para exportar CSV -->
-        <a href="{{ url_for('exportar_csv') }}" class="btn btn-success"
+        <a href="{{ url_for('exportar_csv') }}" class="btn btn-custom"
           >Exportar Dados para CSV</a
         >
       </div>
 
       <div class="button-container mt-2">
         <!-- Botão para atualizar a visualização -->
-        <a href="{{ url_for('dashboard') }}" class="btn btn-info"
+        <a href="{{ url_for('dashboard') }}" class="btn btn-custom"
           >Visualizar Últimos 7 Dias</a
         >
       </div>
 
-      <div class="mt-2">
+      <div class="button-container mt-2">
         <a href="{{ url_for('index') }}">
-          <button class="btn-voltar btn btn-secondary">Início</button>
+          <button class="btn btn-custom">Início</button>
         </a>
       </div>
     </div>
