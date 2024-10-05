@@ -6,13 +6,13 @@
   <div class="col">
     <div class="row">{{ combined_graph|safe }}</div>
     <div class="row cta-part d-flex justify-content-between">
-      <a href="{{ url_for('exportar_csv') }}" class="btn btn-custom"
+      <a href="{{ url_for('api.exportar_csv') }}" class="btn btn-custom"
         >Exportar Dados para CSV</a
       >
-      <a href="{{ url_for('dashboard') }}" class="btn btn-custom"
+      <a href="{{ url_for('dashboard.dashboard') }}" class="btn btn-custom"
         >Visualizar Últimos 7 Dias</a
       >
-      <a href="{{ url_for('index') }}">
+      <a href="{{ url_for('home.index') }}">
         <button class="btn btn-custom">Início</button>
       </a>
     </div>
