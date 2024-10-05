@@ -1,48 +1,12 @@
 
+/* .chart-container {
+    margin-top: 20px;
+    width: 100%;
+    max-width: 1000px;
+    margin-left: auto;
+    margin-right: auto;
+} */
 
-        .container {
-            max-width: 1200px;
-            background-color: white;
-            padding: 30px;
-            border-radius: 12px;
-            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
-            text-align: center;
-        }
-
-        .chart-container {
-            margin-top: 20px;
-            width: 100%;
-            max-width: 1000px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        /* Botão de voltar */
-        .btn-voltar {
-            margin-top: 30px;
-            padding: 10px 20px;
-            background-color: #27ae60;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            font-size: 1rem;
-            cursor: pointer;
-            transition: background-color 0.3s ease;
-        }
-
-        .btn-voltar:hover {
-            background-color: #219150;
-        }
-
-        /* Responsividade */
-        @media (max-width: 768px) {
-            h1 {
-                font-size: 2rem;
-            }
-        }
-
-        @media (max-width: 576px) {
-            h1 {
-                font-size: 1.5rem;
-            }
-        }
+.dashboard {
+    min-width: 90vw;
+}

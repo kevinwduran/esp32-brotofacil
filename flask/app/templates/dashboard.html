@@ -1,53 +1,21 @@
-<!DOCTYPE html>
-<html lang="pt-br">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Dashboard de Temperatura e Umidade</title>
-    <link
-      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
-      rel="stylesheet"
-    />
-    <link
-      rel="stylesheet"
-      href="{{ url_for('static', filename='styles.css') }}"
-    />
-    <link
-      rel="stylesheet"
-      href="{{ url_for('static', filename='dashboard.css') }}"
-    />
-  </head>
-  <body>
-    <div class="container">
-      <h1 class="title">Broto Fácil</h1>
+{% extends "layout.html" %} {% block title %}Dashboard - Broto Fácil{% endblock
+%} {% block content %}
 
-      <div class="chart-container">
-        <!-- Gráfico-->
-        {{ combined_graph|safe }}
-      </div>
-
-      <div class="button-container mt-4">
-        <!-- Botão para exportar CSV -->
-        <a href="{{ url_for('exportar_csv') }}" class="btn btn-custom"
-          >Exportar Dados para CSV</a
-        >
-      </div>
-
-      <div class="button-container mt-2">
-        <!-- Botão para atualizar a visualização -->
-        <a href="{{ url_for('dashboard') }}" class="btn btn-custom"
-          >Visualizar Últimos 7 Dias</a
-        >
-      </div>
-
-      <div class="button-container mt-2">
-        <a href="{{ url_for('index') }}">
-          <button class="btn btn-custom">Início</button>
-        </a>
-      </div>
+<div class="container box-access">
+  <h1 class="title">Login</h1>
+  <div class="col">
+    <div class="row">{{ combined_graph|safe }}</div>
+    <div class="row cta-part d-flex justify-content-between">
+      <a href="{{ url_for('exportar_csv') }}" class="btn btn-custom"
+        >Exportar Dados para CSV</a
+      >
+      <a href="{{ url_for('dashboard') }}" class="btn btn-custom"
+        >Visualizar Últimos 7 Dias</a
+      >
+      <a href="{{ url_for('index') }}">
+        <button class="btn btn-custom">Início</button>
+      </a>
     </div>
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-  </body>
-</html>
+  </div>
+</div>
+{% endblock %}
