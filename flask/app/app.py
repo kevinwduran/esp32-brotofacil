@@ -5,7 +5,9 @@ from controllers.auth import auth_bp
 from controllers.dashboard import dashboard_bp
 from controllers.api import api_bp
 from config import Config
-from models import db 
+from models import db
+from models.user import User
+from flask_login import LoginManager
 
 # Configurações
 app = Flask(__name__, template_folder='views', static_folder='static')
@@ -17,6 +19,18 @@ app.register_blueprint(home_bp)
 app.register_blueprint(auth_bp)
 app.register_blueprint(dashboard_bp)
 app.register_blueprint(api_bp)
+
+# Inicializa o LoginManager
+login_manager = LoginManager()
+login_manager.init_app(app)
+
+# Opcionalmente, defina a página de login padrão
+login_manager.login_view = 'auth.login'
+
+# Carrega o usuário com base no ID armazenado na sessão
+@login_manager.user_loader
+def load_user(user_id):
+    return User.query.get(int(user_id))
 
 # Iniciar
 if __name__ == '__main__':

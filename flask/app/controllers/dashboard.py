@@ -4,15 +4,15 @@ from zoneinfo import ZoneInfo
 import plotly.graph_objs as go
 import plotly.io as pio
 from models.sensor_data import DadosSensor
+from models.user import User
+from flask_login import login_required
 
 dashboard_bp = Blueprint('dashboard', __name__)
 
 # Rota para visualizar o dashboard
 @dashboard_bp.route('/dashboard')
+@login_required
 def dashboard():
-    if 'usuario_autenticado' not in session:
-        return redirect(url_for('auth.login'))
-    
     # Definir a quantidade de dias que deseja filtrar
     DIAS_DE_FILTRAGEM = 7
     data_limite = datetime.now(ZoneInfo('America/Sao_Paulo')) - timedelta(days=DIAS_DE_FILTRAGEM)
