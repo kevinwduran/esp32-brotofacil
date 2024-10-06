@@ -4,10 +4,6 @@
 {% block content %}
 <h1>Login</h1>
 
-{% if success %}
-<div class="alert alert-success">{{ success }}</div>
-{% endif %}
-
 <form method="POST" action="">
   {{ form.hidden_tag() }}
 

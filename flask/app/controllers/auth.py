@@ -19,6 +19,8 @@ def register():
             db.session.commit()
             flash('Registro concluído! Você pode fazer login agora.', 'success')
             return redirect(url_for('auth.login'))  # Redirecionar para a página de login
+        
+        flash('Formulário inválido. Tente novamente.', 'danger')
 
     return render_template('register.html', form=form)
 
