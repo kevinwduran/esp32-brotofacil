@@ -24,7 +24,7 @@ app.register_blueprint(api_bp)
 login_manager = LoginManager()
 login_manager.init_app(app)
 
-# Opcionalmente, defina a página de login padrão
+# login padrão
 login_manager.login_view = 'auth.login'
 
 # Carrega o usuário com base no ID armazenado na sessão
@@ -32,7 +32,7 @@ login_manager.login_view = 'auth.login'
 def load_user(user_id):
     return User.query.get(int(user_id))
 
-# Iniciar
+# Inicia
 if __name__ == '__main__':
     with app.app_context():
         db.create_all()  # Cria as tabelas no banco de dados se não existirem

@@ -6,12 +6,15 @@ import plotly.io as pio
 from models.sensor_data import DadosSensor
 from models.user import User
 from flask_login import login_required
+from decorators.role_required import role_required 
 
 dashboard_bp = Blueprint('dashboard', __name__)
 
 # Rota para visualizar o dashboard
+# Apenas o usuário admin pode ver
 @dashboard_bp.route('/dashboard')
 @login_required
+@role_required('admin')
 def dashboard():
     # Definir a quantidade de dias que deseja filtrar
     DIAS_DE_FILTRAGEM = 7
