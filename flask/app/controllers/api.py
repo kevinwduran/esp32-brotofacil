@@ -11,12 +11,13 @@ def receber_dados():
     dados = request.json
     temperatura = dados.get('temperatura')
     umidade = dados.get('umidade')
-    luminosidade = dados.get('luminosidade')  # Adicione esta linha
+    luminosidade = dados.get('luminosidade') 
+    umidadesolo = dados.get('umidadesolo') 
 
-    if temperatura is None or umidade is None or luminosidade is None:  # Atualize a verificação
-        return jsonify({"status": "erro", "mensagem": "Dados de temperatura, umidade ou luminosidade ausentes"}), 400
+    if temperatura is None or umidade is None or luminosidade is None or umidadesolo is None:  # Atualize a verificação
+        return jsonify({"status": "erro", "mensagem": "Dados de temperatura, umidade, luminosidade ou umidade solo ausentes"}), 400
     
-    novo_dado = DadosSensor(temperatura=temperatura, umidade=umidade, luminosidade=luminosidade)  # Atualize esta linha
+    novo_dado = DadosSensor(temperatura=temperatura, umidade=umidade, luminosidade=luminosidade, umidadesolo=umidadesolo)  # Atualize esta linha
     db.session.add(novo_dado)
     db.session.commit()
 
@@ -32,7 +33,7 @@ def exportar_csv():
         return jsonify({"status": "erro", "mensagem": "Nenhum dado disponível para exportação"}), 404
 
     # Nome das colunas no CSV
-    colunas = ['ID', 'Temperatura (°C)', 'Umidade (%)', 'Luminosidade', 'Timestamp']
+    colunas = ['ID', 'Temperatura (°C)', 'Umidade (%)', 'Luminosidade (%)', 'Umidade Solo (%)' 'Timestamp']
 
     # Criar um arquivo CSV em memória
     csv_buffer = StringIO()
@@ -41,7 +42,7 @@ def exportar_csv():
 
     # Preencher o CSV com os dados do banco
     for dado in dados:
-        escritor_csv.writerow([dado.id, dado.temperatura, dado.umidade, dado.luminosidade, dado.timestamp.strftime('%d/%m/%Y %H:%M:%S')])
+        escritor_csv.writerow([dado.id, dado.temperatura, dado.umidade, dado.luminosidade, dado.umidadesolo, dado.timestamp.strftime('%d/%m%Y%H:%M:%S')])
 
     # Definir o conteúdo do CSV como resposta
     resposta_csv = Response(csv_buffer.getvalue(), mimetype='text/csv')

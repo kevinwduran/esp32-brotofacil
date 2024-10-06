@@ -11,5 +11,6 @@ class DadosSensor(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     temperatura = db.Column(db.Float, nullable=False)
     umidade = db.Column(db.Float, nullable=False)
-    luminosidade = db.Column(db.Integer, nullable=False)  # Adicione esta linha
+    luminosidade = db.Column(db.Integer, nullable=False) 
+    umidadesolo = db.Column(db.Integer, nullable=False)  
     timestamp = db.Column(db.DateTime, default=obter_timestamp_brasilia, nullable=False)

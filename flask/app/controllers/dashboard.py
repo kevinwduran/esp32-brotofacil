@@ -28,8 +28,9 @@ def dashboard():
     temperaturas = [d.temperatura for d in dados]
     umidades = [d.umidade for d in dados]
     luminosidades = [d.luminosidade for d in dados] 
+    umidadesolos = [d.umidadesolo for d in dados] 
 
-    # Gráfico combinado de Temperatura, Umidade e Luminosidade
+    # Gráfico combinado de Temperatura, Umidade e Luminosidade e umidadesolo
     fig = go.Figure()
 
     # Linha de Temperatura
@@ -59,15 +60,26 @@ def dashboard():
         x=timestamps, 
         y=luminosidades, 
         mode='lines+markers', 
-        name='Luminosidade', 
+        name='Luminosidade (%)', 
         line=dict(color='#FF5733'),
         marker=dict(size=6),
         hovertemplate='Data: %{x}<br>Luminosidade: %{y}<extra></extra>'
     ))
 
+    # Linha de Luminosidade
+    fig.add_trace(go.Scatter(
+        x=timestamps, 
+        y=umidadesolos, 
+        mode='lines+markers', 
+        name='Umidadade do Solo (%)', 
+        line=dict(color='#032603'),
+        marker=dict(size=6),
+        hovertemplate='Data: %{x}<br>Umidadade do Solo: %{y}<extra></extra>'
+    ))
+
     # Layout do gráfico
     fig.update_layout(
-        title_text='Temperatura, Umidade e Luminosidade nos Últimos 7 Dias',
+        title_text='Dados dos últimos 7 dias',
         xaxis_title='Data e Hora',
         yaxis_title='Medições',
         legend=dict(
