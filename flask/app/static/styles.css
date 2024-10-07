@@ -7,6 +7,9 @@
 .mt2 {
     margin-top: 2rem;
 }
+.chart {
+    height: 150px; /* Defina a altura que você deseja */
+  }
 .mb2 {
     margin-bottom: 2rem;
 }
@@ -90,4 +93,5 @@ img {
 
 .cta-part {
     padding: 1rem 0;
+    gap: 1rem;
 }

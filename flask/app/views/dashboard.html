@@ -1,44 +1,269 @@
-{% extends "templates/layout.html" %}
-{% block title %}Dashboard - Broto Fácil{% endblock %}
-{% block content %}
-
+{% extends "templates/layout.html" %} {% block title %}Dashboard - Broto Fácil{%
+endblock %} {% block content %}
 <div class="dashboard">
   <h1 class="title">Dashboard</h1>
-  <div class="row">
-    <!-- Gráfico de Temperatura -->
-    <div class="col-md-12">
-      <h2>Temperatura</h2>
-      <div>{{ temp_graph|safe }}</div>
-    </div>
 
-    <!-- Gráfico de Umidade -->
-    <div class="col-md-12">
-      <h2>Umidade</h2>
-      <div>{{ umid_graph|safe }}</div>
+  <!-- Gráficos Resumo -->
+  <div class="row">
+    <div class="col">
+      <h3>Temperatura (°C)</h3>
+      <canvas id="chartTempResumo" class="chart"></canvas>
+    </div>
+    <div class="col">
+      <h3>Umidade (%)</h3>
+      <canvas id="chartUmidadeResumo" class="chart"></canvas>
+    </div>
+    <div class="col">
+      <h3>Luminosidade (%)</h3>
+      <canvas id="chartLumResumo" class="chart"></canvas>
+    </div>
+    <div class="col">
+      <h3>Umidade do Solo (%)</h3>
+      <canvas id="chartUmidadeSoloResumo" class="chart"></canvas>
     </div>
   </div>
 
-  <div class="row">
-    <!-- Gráfico de Luminosidade -->
-    <div class="col-md-12">
-      <h2>Luminosidade</h2>
-      <div>{{ lumi_graph|safe }}</div>
-    </div>
-
-    <!-- Gráfico de Umidade do Solo -->
-    <div class="col-md-12">
-      <h2>Umidade do Solo</h2>
-      <div>{{ solo_graph|safe }}</div>
-    </div>
-  </div>
-
-  <div class="row cta-part d-flex justify-content-between mt-3 mx-3">
-    <a href="{{ url_for('api.exportar_csv') }}" class="btn btn-custom">Exportar Dados para CSV</a>
-    <a href="{{ url_for('dashboard.dashboard') }}" class="btn btn-custom">Visualizar Últimos 7 Dias</a>
+  <div class="row cta-part d-flex gap-3 justify-content-center mt-3 mb-3">
+    <a href="{{ url_for('api.exportar_csv') }}" class="btn btn-custom"
+      >Exportar Dados para CSV</a
+    >
+    <a href="{{ url_for('dashboard.dashboard') }}" class="btn btn-custom"
+      >Visualizar Últimos 7 Dias</a
+    >
     <a href="{{ url_for('home.index') }}">
       <button class="btn btn-custom">Início</button>
     </a>
   </div>
+
+  <!-- Gráfico de Temperatura -->
+  <div class="row">
+    <div class="col">
+      <h3>Temperatura (°C)</h3>
+      <canvas id="chartTemperatura" class="chart-big"></canvas>
+    </div>
+  </div>
+
+  <!-- Gráfico de Umidade -->
+  <div class="row">
+    <div class="col">
+      <h3>Umidade (%)</h3>
+      <canvas id="chartUmidade" class="chart-big"></canvas>
+    </div>
+  </div>
+
+  <!-- Gráfico de Luminosidade -->
+  <div class="row">
+    <div class="col">
+      <h3>Luminosidade (%)</h3>
+      <canvas id="chartLuminosidade" class="chart-big"></canvas>
+    </div>
+  </div>
+
+  <!-- Gráfico de Umidade do Solo -->
+  <div class="row">
+    <div class="col">
+      <h3>Umidade do Solo (%)</h3>
+      <canvas id="chartUmidadeSolo" class="chart-big"></canvas>
+    </div>
+  </div>
 </div>
 
+<!-- Estilos CSS -->
+<style>
+  .chart {
+    height: 100px; /* Ajuste a altura para um valor que não crie muito espaço em branco */
+  }
+
+  .chart-big {
+    text-align: center;
+    max-height: 400px;
+  }
+
+  /* Limitar a altura do container para evitar rolagem */
+  .dashboard {
+    overflow: hidden; /* Evitar rolagem indesejada */
+  }
+</style>
+
+<!-- Biblioteca Chart.js -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<!-- Script de configuração dos gráficos -->
+<script>
+  // Dados vindos do backend
+  const dataFromBackend = {
+    timestamps: {{ timestamps | tojson | safe }},
+    temperaturas: {{ temperaturas | tojson | safe }},
+    umidades: {{ umidades | tojson | safe }},
+    luminosidades: {{ luminosidades | tojson | safe }},
+    umidadesolos: {{ umidadesolos | tojson | safe }}
+  };
+
+  // Obter o último valor de cada conjunto de dados
+  const ultimaTemperatura = dataFromBackend.temperaturas[dataFromBackend.temperaturas.length - 1];
+  const ultimaUmidade = dataFromBackend.umidades[dataFromBackend.umidades.length - 1];
+  const ultimaLuminosidade = dataFromBackend.luminosidades[dataFromBackend.luminosidades.length - 1];
+  const ultimaUmidadeSolo = dataFromBackend.umidadesolos[dataFromBackend.umidadesolos.length - 1];
+
+  // Plugin para desenhar texto no centro do gráfico
+  const centerTextPlugin = {
+    id: 'centerText',
+    afterDraw(chart) {
+      const ctx = chart.ctx;
+      const data = chart.data.datasets[0].data;
+      const total = data.reduce((acc, val) => acc + val, 0);
+      const centerValue = Math.round(data[0]); // Apenas o valor do gráfico
+
+      ctx.save();
+      ctx.font = 'bold 14px Arial';
+      ctx.fillStyle = 'black'; // Cor do texto
+      ctx.textAlign = 'center';
+      ctx.textBaseline = 'middle';
+      ctx.fillText(centerValue, chart.width / 2, chart.height / 2);
+      ctx.restore();
+    }
+  };
+
+  // Gráfico Circular de Temperatura
+  const ctxTempResumo = document.getElementById('chartTempResumo').getContext('2d');
+  new Chart(ctxTempResumo, {
+    type: 'doughnut',
+    data: {
+      labels: ['Temperatura'],
+      datasets: [{
+        data: [ultimaTemperatura, 100 - ultimaTemperatura],
+        backgroundColor: ['rgba(102, 164, 4, 1)', 'rgba(200, 200, 200, 0.3)'],
+      }]
+    },
+    options: {
+      responsive: true,
+      plugins: {
+        centerText: true // Adiciona o plugin
+      }
+    },
+    plugins: [centerTextPlugin] // Registra o plugin
+  });
+
+  // Gráfico Circular de Umidade
+  const ctxUmidadeResumo = document.getElementById('chartUmidadeResumo').getContext('2d');
+  new Chart(ctxUmidadeResumo, {
+    type: 'doughnut',
+    data: {
+      labels: ['Umidade'],
+      datasets: [{
+        data: [ultimaUmidade, 100 - ultimaUmidade],
+        backgroundColor: ['rgba(255, 215, 89, 1)', 'rgba(200, 200, 200, 0.3)'],
+      }]
+    },
+    options: {
+      responsive: true,
+      plugins: {
+        centerText: true // Adiciona o plugin
+      }
+    },
+    plugins: [centerTextPlugin] // Registra o plugin
+  });
+
+  // Gráfico Circular de Luminosidade
+  const ctxLumResumo = document.getElementById('chartLumResumo').getContext('2d');
+  new Chart(ctxLumResumo, {
+    type: 'doughnut',
+    data: {
+      labels: ['Luminosidade'],
+      datasets: [{
+        data: [ultimaLuminosidade, 100 - ultimaLuminosidade],
+        backgroundColor: ['rgba(255, 87, 51, 1)', 'rgba(200, 200, 200, 0.3)'],
+      }]
+    },
+    options: {
+      responsive: true,
+      plugins: {
+        centerText: true // Adiciona o plugin
+      }
+    },
+    plugins: [centerTextPlugin] // Registra o plugin
+  });
+
+  // Gráfico Circular de Umidade do Solo
+  const ctxUmidadeSoloResumo = document.getElementById('chartUmidadeSoloResumo').getContext('2d');
+  new Chart(ctxUmidadeSoloResumo, {
+    type: 'doughnut',
+    data: {
+      labels: ['Umidade do Solo'],
+      datasets: [{
+        data: [ultimaUmidadeSolo, 100 - ultimaUmidadeSolo],
+        backgroundColor: ['rgba(3, 38, 3, 1)', 'rgba(200, 200, 200, 0.3)'],
+      }]
+    },
+    options: {
+      responsive: true,
+      plugins: {
+        centerText: true // Adiciona o plugin
+      }
+    },
+    plugins: [centerTextPlugin] // Registra o plugin
+  });
+
+  // Gráfico de Temperatura
+  const ctxTemp = document.getElementById('chartTemperatura').getContext('2d');
+  new Chart(ctxTemp, {
+    type: 'line',
+    data: {
+      labels: dataFromBackend.timestamps,
+      datasets: [{
+        label: 'Temperatura (°C)',
+        data: dataFromBackend.temperaturas,
+        borderColor: 'rgba(102, 164, 4, 1)',
+        backgroundColor: 'rgba(102, 164, 4, 0.5)',
+        fill: false,
+        tension: 0.4
+      }]
+    }
+  });
+
+  // Gráfico de Umidade
+  const ctxUmidade = document.getElementById('chartUmidade').getContext('2d');
+  new Chart(ctxUmidade, {
+    type: 'bar',
+    data: {
+      labels: dataFromBackend.timestamps,
+      datasets: [{
+        label: 'Umidade (%)',
+        data: dataFromBackend.umidades,
+        borderColor: 'rgba(255, 215, 89, 1)',
+        backgroundColor: 'rgba(255, 215, 89, 0.5)'
+      }]
+    }
+  });
+
+  // Gráfico de Luminosidade
+  const ctxLum = document.getElementById('chartLuminosidade').getContext('2d');
+  new Chart(ctxLum, {
+    type: 'bar',
+    data: {
+      labels: dataFromBackend.timestamps,
+      datasets: [{
+        label: 'Luminosidade (%)',
+        data: dataFromBackend.luminosidades,
+        borderColor: 'rgba(255, 87, 51, 1)',
+        backgroundColor: 'rgba(255, 87, 51, 0.5)'
+      }]
+    }
+  });
+
+  // Gráfico de Umidade do Solo
+  const ctxUmidadeSolo = document.getElementById('chartUmidadeSolo').getContext('2d');
+  new Chart(ctxUmidadeSolo, {
+    type: 'bar',
+    data: {
+      labels: dataFromBackend.timestamps,
+      datasets: [{
+        label: 'Umidade do Solo (%)',
+        data: dataFromBackend.umidadesolos,
+        borderColor: 'rgba(3, 38, 3, 1)',
+        backgroundColor: 'rgba(3, 38, 3, 0.5)'
+      }]
+    }
+  });
+</script>
 {% endblock %}
