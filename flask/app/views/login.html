@@ -1,7 +1,7 @@
 {% extends "templates/layout.html" %} {% block title %}Login - Broto Fácil{%
 endblock %} {% block content %}
 
-<div class="container box-access">
+<div class="container box-access p-4">
   <h1 class="title">Login</h1>
   <form method="POST" action="">
     {{ form.hidden_tag() }}
@@ -22,7 +22,10 @@ endblock %} {% block content %}
       {% endfor %}
     </div>
 
-    <div class="form-group d-flex justify-content-center text-center mb2">{{ form.submit(class_="btn btn-custom") }}</div>
+    <div class="form-group d-flex justify-content-between text-center">
+      <a class="btn btn-second" href="{{url_for('auth.register')}}">Registrar</a>
+      {{ form.submit(class_="btn btn-custom") }}
+    </div>
   </form>
 </div>
 

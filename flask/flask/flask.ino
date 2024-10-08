@@ -47,6 +47,10 @@ void loop() {
     int sensorUmidadeSolo = analogRead(34);  
     int umidadesolo = map(sensorUmidadeSolo, 700, 3500, 100, 0); 
 
+    if (umidadesolo < 0) {
+      umidadesolo = 0;
+    }
+
 
     if (isnan(temperatura) || isnan(umidade)) {
       Serial.println("Falha ao ler o sensor DHT!");

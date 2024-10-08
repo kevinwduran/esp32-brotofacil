@@ -36,7 +36,7 @@ endblock %} {% block content %}
   </div>
 
   <!-- Gráfico de Temperatura -->
-  <div class="row">
+  <div class="row mt-3">
     <div class="col">
       <h3>Temperatura (°C)</h3>
       <canvas id="chartTemperatura" class="chart-big"></canvas>
@@ -44,7 +44,7 @@ endblock %} {% block content %}
   </div>
 
   <!-- Gráfico de Umidade -->
-  <div class="row">
+  <div class="row mt-3">
     <div class="col">
       <h3>Umidade (%)</h3>
       <canvas id="chartUmidade" class="chart-big"></canvas>
@@ -52,7 +52,7 @@ endblock %} {% block content %}
   </div>
 
   <!-- Gráfico de Luminosidade -->
-  <div class="row">
+  <div class="row mt-3">
     <div class="col">
       <h3>Luminosidade (%)</h3>
       <canvas id="chartLuminosidade" class="chart-big"></canvas>
@@ -60,7 +60,7 @@ endblock %} {% block content %}
   </div>
 
   <!-- Gráfico de Umidade do Solo -->
-  <div class="row">
+  <div class="row mt-3">
     <div class="col">
       <h3>Umidade do Solo (%)</h3>
       <canvas id="chartUmidadeSolo" class="chart-big"></canvas>
@@ -70,19 +70,7 @@ endblock %} {% block content %}
 
 <!-- Estilos CSS -->
 <style>
-  .chart {
-    height: 100px; /* Ajuste a altura para um valor que não crie muito espaço em branco */
-  }
-
-  .chart-big {
-    text-align: center;
-    max-height: 400px;
-  }
-
-  /* Limitar a altura do container para evitar rolagem */
-  .dashboard {
-    overflow: hidden; /* Evitar rolagem indesejada */
-  }
+  
 </style>
 
 <!-- Biblioteca Chart.js -->

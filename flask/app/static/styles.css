@@ -86,6 +86,24 @@ img {
     color: #fff;
 }
 
+.btn-second {
+    background-color: #ffffff;
+    border: none;
+    padding: 12px 25px;
+    font-size: 1rem;
+    color: #66A404;
+    border-radius: 50px;
+    border: 2px solid #66A404;
+    text-transform: uppercase;
+    font-family: 'Poppins', sans-serif;
+    transition: background-color 0.3s ease;
+}
+
+.btn-second:hover {
+    background-color: #66A404;
+    color: #fff;
+}
+
 
 .box-access {
     max-width: 800px;
