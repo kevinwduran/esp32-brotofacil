@@ -33,12 +33,18 @@
 
 body {
     font-family: 'Quicksand', sans-serif;
+<<<<<<< HEAD
     color: var(--black-color);
+=======
+    background-color: #F1F3F0;
+    color: #4a4a4a;
+>>>>>>> parent of 416b979 (Melhorias de layout)
 }
 
 .block-content {
     display: flex;
     justify-content: center;
+    align-items: center;
     min-height: 100vh;
 }
 
@@ -46,6 +52,7 @@ body {
     max-width: 1200px;
     background-color: var(--white-color);
     border-radius: 12px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
 }
 
 img {
@@ -114,6 +121,7 @@ img {
     color: var(--white-color);
 }
 
+<<<<<<< HEAD
 .btn-second-gray {
     background-color: var(--white-color);
     border: none;
@@ -126,6 +134,11 @@ img {
     font-weight: bold;
     font-family: 'Quicksand', sans-serif;
     transition: background-color 0.3s ease;
+=======
+
+.box-access {
+    max-width: 800px;
+>>>>>>> parent of 416b979 (Melhorias de layout)
 }
 
 .btn-second-gray:hover {
@@ -136,13 +149,16 @@ img {
 /* Barra de navegação inferior */
 .nav-bottom {
     position: fixed;
-    max-width: 500px;
     width: 80%;
     transform: translate(-50%, -50%);
     left: 50%;
     padding: 8px 25px;
     border-radius: 50px;
+<<<<<<< HEAD
     background-color: var(--primary-color);
+=======
+    background-color: #98d98c;
+>>>>>>> parent of 416b979 (Melhorias de layout)
     z-index: 9999;
     bottom: 1%;
     display: flex;
