@@ -8,20 +8,20 @@ endblock %} {% block content %}
 
   <!-- Gráficos Resumo -->
   <div class="row">
-    <div class="col">
-      <h3>Temperatura (°C)</h3>
+    <div class="col-6 col-md-4 col-lg-3">
+      <span class="fw-semibold">Temperatura (°C)</span>
       <canvas id="chartTempResumo" class="chart"></canvas>
     </div>
-    <div class="col">
-      <h3>Umidade (%)</h3>
+    <div class="col-6 col-md-4 col-lg-3">
+      <span class="fw-semibold">Umidade (%)</span>
       <canvas id="chartUmidadeResumo" class="chart"></canvas>
     </div>
-    <div class="col">
-      <h3>Luminosidade (%)</h3>
+    <div class="col-6 col-md-4 col-lg-3">
+      <span class="fw-semibold">Luminosidade (%)</span>
       <canvas id="chartLumResumo" class="chart"></canvas>
     </div>
-    <div class="col">
-      <h3>Umidade do Solo (%)</h3>
+    <div class="col-6 col-md-4 col-lg-3">
+      <span class="fw-semibold">Umidade do Solo (%)</span>
       <canvas id="chartUmidadeSoloResumo" class="chart"></canvas>
     </div>
   </div>
@@ -257,4 +257,5 @@ endblock %} {% block content %}
     }
   });
 </script>
+
 {% endblock %}

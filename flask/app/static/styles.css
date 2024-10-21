@@ -7,9 +7,12 @@
 .mt2 {
     margin-top: 2rem;
 }
+
 .chart {
-    height: 150px; /* Defina a altura que você deseja */
-  }
+    height: 150px;
+    /* Defina a altura que você deseja */
+}
+
 .mb2 {
     margin-bottom: 2rem;
 }
@@ -112,4 +115,32 @@ img {
 .cta-part {
     padding: 1rem 0;
     gap: 1rem;
+}
+
+.nav-bottom {
+    position: fixed;
+    width: 80%;
+    transform: translate(-50%, -50%);
+    left: 50%;
+    padding: 8px 25px;
+    border-radius: 50px;
+    background-color: #98d98c;
+    z-index: 9999;
+    bottom: 1%;
+    display: flex;
+    gap: 10px;
+    justify-content: space-around;
+    align-items: center;
+    color: #fff;
+}
+
+.font-12px {
+    font-size: 12px;
+}
+
+.absolute-center {
+    position: absolute;
+    transform: translate(-50%, -50%);
+    top: 50%;
+    left: 50%;
 }
