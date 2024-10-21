@@ -38,7 +38,7 @@ endblock %} {% block content %}
       {% endfor %}
     </div>
 
-    <div class="form-group d-flex justify-content-center text-center">
+    <div class="form-group d-flex justify-content-between text-center">
         <a class="btn btn-second" href="{{url_for('home.index')}}">Voltar</a>
         {{ form.submit(class_="btn btn-custom") }}</div>
   </form>
