@@ -1,26 +1,80 @@
 {% extends "templates/layout.html" %} {% block title %}Dashboard - Broto Fácil{%
 endblock %} {% block content %}
-<div class="container-sm">
+
+<nav class="navbar navbar-expand-lg position-fixed w-100 " style="z-index: 99999;background-color: rgb(237 249 249);">
+  <div class="container-sm">
+    <div style="gap: 12px;" class="d-flex gap-3 align-items-center">
+      <div class="p-2 rounded-circle d-flex justify-content-center align-items-center"
+        style="height: 40px;width: 40px;box-shadow: -3px 2px 10px 1px rgba(0, 0, 0, 0.15) !important;">
+        <img src="{{ url_for('static', filename='logo.png') }}" alt="Logo" class="w-100 object-contan" />
+      </div>
+      <div class="d-flex flex-column">
+        <span class="font-12px opacity-75 text-success">
+          Seja bem vindo
+        </span>
+        <span class="fw-semibold">
+          {{user.username}}
+        </span>
+      </div>
+    </div>
+    <a href="{{ url_for('dashboard.dashboard') }}" class="btn btn-second p-2 rounded-circle position-relative"
+      style="height: 56px;width:56px" type="button">
+      <i class="fa-solid fa-xl fa-arrows-rotate absolute-center"></i>
+    </a>
+</nav>
+
+<div class="container-sm" style="padding-top: 70px;">
 
   <h1 class="title">Dashboard</h1>
   
-  <div class="d-flex gap-2 justify-content-center my-3 py-2 bg-white rounded-4">
-    <a href="{{ url_for('api.exportar_csv') }}" style="min-width: 150px;" class="btn btn-custom"><i class="fa-solid fa-file-arrow-down me-2"></i>
-      CSV</a>
+  <div class="d-flex justify-content-start align-items-center gap-2 mt-3 mb-3">
+    <a href="{{ url_for('api.exportar_csv') }}" class="btn btn-second-gray"
+      ><i class="fa-solid fa-file-arrow-down fa-lg me-1"></i> CSV</a
+    >
 
     <div class="dropdown">
-      <button class="btn btn-custom dropdown-toggle" type="button" style="min-width: 150px;" id="filterButton" data-bs-toggle="dropdown"
-        aria-expanded="false">
-        Filtrar
+      <button
+        class="btn btn-second-gray dropdown-toggle"
+        type="button"
+        id="filterButton"
+        data-bs-toggle="dropdown"
+        aria-expanded="false"
+      >
+        Período
       </button>
       <ul class="dropdown-menu" aria-labelledby="filterButton">
-        <li><a class="dropdown-item" href="{{ url_for('dashboard.dashboard', filtro='1hora') }}">Última 1 hora</a></li>
-        <li><a class="dropdown-item" href="{{ url_for('dashboard.dashboard', filtro='1dia') }}">Último 1 dia</a></li>
-        <li><a class="dropdown-item" href="{{ url_for('dashboard.dashboard', filtro='7dias') }}">Últimos 7 dias</a></li>
-        <li><a class="dropdown-item" href="{{ url_for('dashboard.dashboard', filtro='1mes') }}">Último 1 mês</a></li>
+        <li>
+          <a
+            class="dropdown-item"
+            href="{{ url_for('dashboard.dashboard', filtro='1hora') }}"
+            >Última 1 hora</a
+          >
+        </li>
+        <li>
+          <a
+            class="dropdown-item"
+            href="{{ url_for('dashboard.dashboard', filtro='1dia') }}"
+            >Último 1 dia</a
+          >
+        </li>
+        <li>
+          <a
+            class="dropdown-item"
+            href="{{ url_for('dashboard.dashboard', filtro='7dias') }}"
+            >Últimos 7 dias</a
+          >
+        </li>
+        <li>
+          <a
+            class="dropdown-item"
+            href="{{ url_for('dashboard.dashboard', filtro='1mes') }}"
+            >Último 1 mês</a
+          >
+        </li>
       </ul>
     </div>
   </div>
+
 
   <!-- Gráficos Resumo -->
   <div class="row">
@@ -329,5 +383,22 @@ endblock %} {% block content %}
     }
   });
 </script>
+
+
+<nav class="nav-bottom">
+  <div class="container">
+    <a href="{{ url_for('home.index') }}" class="btn w-100">
+      <i class="fa-solid fa-house fa-xl"></i>
+    </a>
+    <div class="w-100">
+    </div>
+    <a href="{{ url_for('dashboard.dashboard') }}" class="btn btn-center-nav-bottom">
+      <i class="fa-solid fa-chart-simple fa-xl"></i>
+    </a>
+    <a href="{{ url_for('auth.login') }}" class="btn w-100">
+      <i class="fa-solid fa-user fa-xl"></i>
+    </a>
+  </div>
+</nav>
 
 {% endblock %}

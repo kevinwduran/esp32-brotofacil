@@ -4,7 +4,7 @@ from zoneinfo import ZoneInfo
 import plotly.graph_objs as go
 import plotly.io as pio
 from models.sensor_data import DadosSensor
-from flask_login import login_required
+from flask_login import login_required, current_user
 from decorators.role_required import role_required 
 
 dashboard_bp = Blueprint('dashboard', __name__)
@@ -47,5 +47,6 @@ def dashboard():
         umidades=umidades,
         luminosidades=luminosidades,
         umidadesolos=umidadesolos,
-        filtro=filtro  # Enviar o filtro selecionado ao template
+        filtro=filtro,  # Enviar o filtro selecionado ao template
+        user = current_user
     )

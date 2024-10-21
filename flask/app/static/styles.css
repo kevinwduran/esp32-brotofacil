@@ -32,7 +32,6 @@ body {
 }
 
 .block-content {
-    padding-top: 70px;
     display: flex;
     justify-content: center;
     min-height: 100vh;
@@ -88,7 +87,7 @@ img {
 }
 
 .btn-second {
-    background-color: #ffffff;
+    background-color: transparent;
     border: none;
     padding: 12px 25px;
     font-size: 1rem;
@@ -184,4 +183,23 @@ img {
 
 .container-button-data-filter .container-button img{
     max-width: 50px;
+}
+
+.btn-second-gray {
+    background-color: transparent;
+    border: none;
+    padding: 8px 16px;
+    font-size: 1rem;
+    color: #565656;
+    border-radius: 50px;
+    border: 3px solid #565656;
+    text-transform: uppercase;
+    font-weight: bold;
+    font-family: 'Quicksand', sans-serif;
+    transition: background-color 0.3s ease;
+}
+
+.btn-second-gray:hover {
+    background-color: #565656;
+    color: #fff;
 }
