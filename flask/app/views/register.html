@@ -1,6 +1,12 @@
-{% extends "templates/layout.html" %} {% block title %}Registrar - Broto Fácil{%
-endblock %} {% block content %}
+{% extends "templates/layout.html" %} 
+{% block title %}Registrar - Broto Fácil{% endblock %} 
+{% block content %}
 
+<div class="d-flex justify-content-center align-items-center vh-100">
+  <div class="container p-4" style="max-width: 400px;">
+    <h1 class="title">Registrar</h1>
+    <form method="POST" action="">
+      {{ form.hidden_tag() }}
 <div class="d-flex justify-content-center align-items-center vh-100">
   <div class="container p-4" style="max-width: 400px;">
     <h1 class="title">Registrar</h1>
@@ -41,6 +47,10 @@ endblock %} {% block content %}
 
       <div class="form-group d-flex justify-content-between text-center mt-4">
         <a class="btn btn-second" href="{{url_for('home.index')}}">Voltar</a>
+        {{ form.submit(class_="btn btn-custom") }}
+      </div>
+    </form>
+  </div>
         {{ form.submit(class_="btn btn-custom") }}
       </div>
     </form>

@@ -4,13 +4,21 @@
 @import 'dashboard.css';
 @import 'login.css';
 
+:root {
+    --primary-color: #275902;
+    --secondary-color: #66A404;
+    --gray-color: #565656;
+    --white-color: #ffffff;
+    --black-color: #4a4a4a;
+    --light-gray-color: #5e5f66;
+}
+
 .mt2 {
     margin-top: 2rem;
 }
 
 .chart {
     height: 150px;
-    /* Defina a altura que você deseja */
 }
 
 .mb2 {
@@ -22,7 +30,6 @@
     border: 0;
     box-sizing: border-box;
 }
-
 
 body {
     font-family: 'Quicksand', sans-serif;
@@ -36,7 +43,6 @@ body {
     justify-content: center;
     min-height: 100vh;
 }
-
 
 .container {
     max-width: 1200px;
@@ -66,24 +72,27 @@ img {
 .description {
     font-size: 1.125rem;
     margin-bottom: 20px;
-    color: #5e5f66;
+    color: var(--light-gray-color);
 }
 
+/* Botões customizados */
 .btn-custom {
-    background-color: #275902;
+    background-color: var(--primary-color);
     border: none;
     padding: 12px 25px;
     font-size: 1rem;
-    color: #fff;
+    color: var(--white-color);
+    border: 3px solid transparent;
     border-radius: 50px;
     text-transform: uppercase;
-    font-family: 'Poppins', sans-serif;
+    font-weight: bold;
+    font-family: 'Quicksand', sans-serif;
     transition: background-color 0.3s ease;
 }
 
 .btn-custom:hover {
-    background-color: #66A404;
-    color: #fff;
+    background-color: var(--secondary-color);
+    color: var(--white-color);
 }
 
 .btn-second {
@@ -91,17 +100,18 @@ img {
     border: none;
     padding: 12px 25px;
     font-size: 1rem;
-    color: #66A404;
+    color: var(--secondary-color);
     border-radius: 50px;
-    border: 2px solid #66A404;
+    border: 3px solid var(--secondary-color);
     text-transform: uppercase;
-    font-family: 'Poppins', sans-serif;
+    font-family: 'Quicksand', sans-serif;
+    font-weight: bold;
     transition: background-color 0.3s ease;
 }
 
 .btn-second:hover {
-    background-color: #66A404;
-    color: #fff;
+    background-color: var(--secondary-color);
+    color: var(--white-color);
 }
 
 
@@ -112,6 +122,12 @@ img {
     gap: 1rem;
 }
 
+.btn-second-gray:hover {
+    background-color: var(--gray-color);
+    color: var(--white-color);
+}
+
+/* Barra de navegação inferior */
 .nav-bottom {
     position: fixed;
     width: 100%;

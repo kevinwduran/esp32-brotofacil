@@ -1,6 +1,12 @@
-{% extends "templates/layout.html" %} {% block title %}Login - Broto Fácil{%
-endblock %} {% block content %}
+{% extends "templates/layout.html" %} 
+{% block title %}Login - Broto Fácil{% endblock %} 
+{% block content %}
 
+<div class="d-flex justify-content-center align-items-center vh-100">
+  <div class="container p-4" style="max-width: 400px;">
+    <h1 class="title">Login</h1>
+    <form method="POST" action="">
+      {{ form.hidden_tag() }}
 <div class="d-flex justify-content-center align-items-center vh-100">
   <div class="container p-4" style="max-width: 400px;">
     <h1 class="title">Login</h1>

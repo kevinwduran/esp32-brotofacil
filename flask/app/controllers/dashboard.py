@@ -3,6 +3,7 @@ from datetime import datetime, timedelta
 from zoneinfo import ZoneInfo
 import plotly.graph_objs as go
 import plotly.io as pio
+from flask_login import current_user
 from models.sensor_data import DadosSensor
 from flask_login import login_required, current_user
 from decorators.role_required import role_required 

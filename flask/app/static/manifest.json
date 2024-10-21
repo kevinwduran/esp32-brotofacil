@@ -1,14 +1,14 @@
 {
   "name": "Broto Fácil",
   "short_name": "Broto Fácil",
-  "theme_color": "#66A404",
+  "theme_color": "#275902",
   "background_color": "#ffffff",
   "display": "standalone",
   "Scope": "/index.html",
   "start_url": "/",
   "icons": [
     {
-      "src": "/static/static/icon-72x72.png",
+      "src": "/static/icon-72x72.png",
       "sizes": "72x72",
       "type": "image/png"
     },

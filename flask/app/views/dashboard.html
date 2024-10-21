@@ -41,6 +41,14 @@ endblock %} {% block content %}
         aria-expanded="false"
       >
         Período
+      <button
+        class="btn btn-second-gray dropdown-toggle"
+        type="button"
+        id="filterButton"
+        data-bs-toggle="dropdown"
+        aria-expanded="false"
+      >
+        Período
       </button>
       <ul class="dropdown-menu" aria-labelledby="filterButton">
         <li>
@@ -71,8 +79,37 @@ endblock %} {% block content %}
             >Último 1 mês</a
           >
         </li>
+        <li>
+          <a
+            class="dropdown-item"
+            href="{{ url_for('dashboard.dashboard', filtro='1hora') }}"
+            >Última 1 hora</a
+          >
+        </li>
+        <li>
+          <a
+            class="dropdown-item"
+            href="{{ url_for('dashboard.dashboard', filtro='1dia') }}"
+            >Último 1 dia</a
+          >
+        </li>
+        <li>
+          <a
+            class="dropdown-item"
+            href="{{ url_for('dashboard.dashboard', filtro='7dias') }}"
+            >Últimos 7 dias</a
+          >
+        </li>
+        <li>
+          <a
+            class="dropdown-item"
+            href="{{ url_for('dashboard.dashboard', filtro='1mes') }}"
+            >Último 1 mês</a
+          >
+        </li>
       </ul>
     </div>
+  </div>
   </div>
 
 
@@ -191,12 +228,24 @@ endblock %} {% block content %}
 </script>
 
 
+<nav class="nav-bottom">
+  <a href="{{ url_for('home.index') }}" class="btn">
+    <i class="fa-solid fa-house"></i>
+  </a>
+  <a href="{{ url_for('dashboard.dashboard') }}" class="btn">
+    <i class="fa-solid fa-chart-pie"></i>
+  </a>
+  <a href="{{ url_for('auth.login') }}" class="btn">
+    <i class="fa-solid fa-user"></i>
+  </a>
+</nav>
+
 <!-- Estilos CSS -->
 <script>
   // Captura o evento de clique no dropdown e redireciona para a rota com o filtro correto
-  document.querySelectorAll('.dropdown-item').forEach(item => {
-    item.addEventListener('click', function() {
-      const filterDays = this.getAttribute('data-filter'); // Obtém o valor de filtro (1, 7 ou 30)
+  document.querySelectorAll(".dropdown-item").forEach((item) => {
+    item.addEventListener("click", function () {
+      const filterDays = this.getAttribute("data-filter"); // Obtém o valor de filtro (1, 7 ou 30)
       window.location.href = `/dashboard?days=${filterDays}`;
     });
   });
