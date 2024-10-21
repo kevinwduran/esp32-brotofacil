@@ -10,11 +10,14 @@
 DHT dht(DHTPIN, DHTTYPE);
 
 // Credenciais WiFi
-const char* ssid = "kevinwduran"; 
-const char* password = "crqutczumt956r8";
+// const char* ssid = "kevinwduran"; 
+// const char* password = "crqutczumt956r8";
+const char* ssid = "ALHN-E1B0"; 
+const char* password = "WC8f4s-mAx";
 
 // URL do servidor Flask
-const char* serverName = "http://192.168.170.28:5000/api/enviar_dados";  // Atualize conforme necessário
+// const char* serverName = "http://192.168.170.28:5000/api/enviar_dados";  
+const char* serverName = "http://192.168.1.11:5000/api/enviar_dados";  
 
 void setup() {
   Serial.begin(9600);
@@ -83,5 +86,5 @@ void loop() {
   }
 
   // Aguarda 5 segundos antes de enviar novos dados
-  delay(5000);
+  delay(1000);
 }
