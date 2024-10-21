@@ -1,5 +1,6 @@
 {% extends "templates/layout.html" %} {% block title %}Dashboard - Broto Fácil{%
 endblock %} {% block content %}
+<<<<<<< HEAD
 
 <nav class="navbar navbar-expand-lg position-fixed w-100 " style="z-index: 99999;background-color: rgb(237 249 249);">
   <div class="container-sm">
@@ -240,7 +241,17 @@ endblock %} {% block content %}
   </a>
 </nav>
 
+  <!-- Gráfico de Umidade do Solo -->
+  <div class="row mt-3">
+    <div class="col">
+      <h3>Umidade do Solo (%)</h3>
+      <canvas id="chartUmidadeSolo" class="chart-big"></canvas>
+    </div>
+  </div>
+</div>
+
 <!-- Estilos CSS -->
+<<<<<<< HEAD
 <script>
   // Captura o evento de clique no dropdown e redireciona para a rota com o filtro correto
   document.querySelectorAll(".dropdown-item").forEach((item) => {
@@ -250,6 +261,11 @@ endblock %} {% block content %}
     });
   });
 </script>
+=======
+<style>
+  
+</style>
+>>>>>>> parent of 416b979 (Melhorias de layout)
 
 <!-- Biblioteca Chart.js -->
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
