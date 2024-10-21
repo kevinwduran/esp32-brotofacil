@@ -47,43 +47,11 @@
   {% endif %}
   {% endwith %}
 
-  <nav class="navbar navbar-expand-lg bg-body-tertiary position-fixed w-100" style="z-index: 99999;">
-    <div class="container-fluid">
-      <div style="gap: 12px;" class="d-flex gap-3 align-items-center">
-        <div class="shadow rounded-circle d-flex justify-content-center align-items-center"
-          style="height: 40px;width: 40px;">
-          <i class="fa-regular fa-user"></i>
-        </div>
-        <div class="d-flex flex-column">
-          <span class="font-12px opacity-75 text-success">
-            Broto facil
-          </span>
-          <span class="fw-semibold">
-            Usuário
-          </span>
-        </div>
-      </div>
-      <a href="{{ url_for('dashboard.dashboard') }}" class="btn btn-second p-2 rounded-circle position-relative" style="height: 56px;width:56px"
-        type="button">
-        <i class="fa-solid fa-xl fa-arrows-rotate absolute-center"></i>
-      </a>
-  </nav>
-
+  
   <div class="block-content">
     <main>{% block content %} {% endblock %}</main>
   </div>
 
-  <nav class="nav-bottom">
-    <a href="{{ url_for('home.index') }}" class="btn text-white">
-      <i class="fa-solid fa-house"></i>
-    </a>
-    <a href="{{ url_for('dashboard.dashboard') }}" class="btn text-white">
-      <i class="fa-solid fa-chart-pie fa-xl"></i>
-    </a>
-    <a href="{{ url_for('auth.login') }}" class="btn text-white">
-      <i class="fa-solid fa-user"></i>
-    </a>
-  </nav>
 
   <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"

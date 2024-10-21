@@ -4,13 +4,21 @@
 @import 'dashboard.css';
 @import 'login.css';
 
+:root {
+    --primary-color: #275902;
+    --secondary-color: #66A404;
+    --gray-color: #565656;
+    --white-color: #ffffff;
+    --black-color: #4a4a4a;
+    --light-gray-color: #5e5f66;
+}
+
 .mt2 {
     margin-top: 2rem;
 }
 
 .chart {
     height: 150px;
-    /* Defina a altura que você deseja */
 }
 
 .mb2 {
@@ -23,24 +31,20 @@
     box-sizing: border-box;
 }
 
-
 body {
     font-family: 'Quicksand', sans-serif;
-    
-    color: #4a4a4a;
+    color: var(--black-color);
 }
 
 .block-content {
-    padding-top: 70px;
     display: flex;
     justify-content: center;
     min-height: 100vh;
 }
 
-
 .container {
     max-width: 1200px;
-    background-color: white;
+    background-color: var(--white-color);
     border-radius: 12px;
 }
 
@@ -60,7 +64,7 @@ img {
     font-family: 'Poppins', sans-serif;
     font-size: 2.5rem;
     font-weight: bold;
-    color: #66A404;
+    color: var(--secondary-color);
     padding: 1rem;
     text-align: center;
 }
@@ -68,53 +72,68 @@ img {
 .description {
     font-size: 1.125rem;
     margin-bottom: 20px;
-    color: #5e5f66;
+    color: var(--light-gray-color);
 }
 
+/* Botões customizados */
 .btn-custom {
-    background-color: #275902;
+    background-color: var(--primary-color);
     border: none;
     padding: 12px 25px;
     font-size: 1rem;
-    color: #fff;
+    color: var(--white-color);
+    border: 3px solid transparent;
     border-radius: 50px;
     text-transform: uppercase;
-    font-family: 'Poppins', sans-serif;
+    font-weight: bold;
+    font-family: 'Quicksand', sans-serif;
     transition: background-color 0.3s ease;
 }
 
 .btn-custom:hover {
-    background-color: #66A404;
-    color: #fff;
+    background-color: var(--secondary-color);
+    color: var(--white-color);
 }
 
 .btn-second {
-    background-color: #ffffff;
+    background-color: var(--white-color);
     border: none;
     padding: 12px 25px;
     font-size: 1rem;
-    color: #66A404;
+    color: var(--secondary-color);
     border-radius: 50px;
-    border: 2px solid #66A404;
+    border: 3px solid var(--secondary-color);
     text-transform: uppercase;
-    font-family: 'Poppins', sans-serif;
+    font-family: 'Quicksand', sans-serif;
+    font-weight: bold;
     transition: background-color 0.3s ease;
 }
 
 .btn-second:hover {
-    background-color: #66A404;
-    color: #fff;
+    background-color: var(--secondary-color);
+    color: var(--white-color);
 }
 
-
-.box-access {
+.btn-second-gray {
+    background-color: var(--white-color);
+    border: none;
+    padding: 8px 16px;
+    font-size: 1rem;
+    color: var(--gray-color);
+    border-radius: 50px;
+    border: 3px solid var(--gray-color);
+    text-transform: uppercase;
+    font-weight: bold;
+    font-family: 'Quicksand', sans-serif;
+    transition: background-color 0.3s ease;
 }
 
-.cta-part {
-    padding: 1rem 0;
-    gap: 1rem;
+.btn-second-gray:hover {
+    background-color: var(--gray-color);
+    color: var(--white-color);
 }
 
+/* Barra de navegação inferior */
 .nav-bottom {
     position: fixed;
     max-width: 500px;
@@ -123,14 +142,23 @@ img {
     left: 50%;
     padding: 8px 25px;
     border-radius: 50px;
-    background-color: #275902;
+    background-color: var(--primary-color);
     z-index: 9999;
     bottom: 1%;
     display: flex;
     gap: 10px;
     justify-content: space-around;
     align-items: center;
-    color: #fff;
+    color: var(--white-color);
+    transition: .3s;
+}
+
+.nav-bottom a {
+    color: var(--white-color);
+}
+
+.nav-bottom:hover, .nav-bottom:focus {
+    color: var(--secondary-color);
 }
 
 .font-12px {
@@ -142,4 +170,46 @@ img {
     transform: translate(-50%, -50%);
     top: 50%;
     left: 50%;
+}
+
+/* Classes de cor para background */
+.bg-primary-c {
+    background-color: var(--primary-color);
+}
+
+.bg-secondary-c {
+    background-color: var(--secondary-color);
+}
+
+.bg-gray-c {
+    background-color: var(--gray-color);
+}
+
+.bg-white {
+    background-color: var(--white-color);
+}
+
+.bg-black {
+    background-color: var(--black-color);
+}
+
+/* Classes de cor para texto */
+.text-primary-c {
+    color: var(--primary-color);
+}
+
+.text-secondary-c {
+    color: var(--secondary-color);
+}
+
+.text-gray {
+    color: var(--gray-color);
+}
+
+.text-white {
+    color: var(--white-color);
+}
+
+.text-black {
+    color: var(--black-color);
 }

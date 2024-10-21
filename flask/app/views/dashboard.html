@@ -1,25 +1,83 @@
 {% extends "templates/layout.html" %} {% block title %}Dashboard - Broto Fácil{%
 endblock %} {% block content %}
-<div class="container mt-4">
-  <a class="text-start" href="{{ url_for('home.index') }}">
-    <button class="btn btn-second"><i class="fa-solid fa-angles-left"></i> LOGOUT</button>
-  </a>
 
-  <div class="row cta-part d-flex justify-content-center mt-3 mb-3">
-    <a href="{{ url_for('api.exportar_csv') }}" class="btn btn-custom">Exportar Dados para CSV</a>
+<nav class="navbar navbar-expand-lg bg-white position-fixed w-100 mb-4" style="z-index: 99999;">
+  <div class="container">
+    <div style="gap: 12px;" class="d-flex gap-3 align-items-center">
+      <div class="rounded-circle bg-primary-c d-flex justify-content-center align-items-center"
+        style="height: 40px;width: 40px;">
+        <i class="fa-solid fa-user opacity-100 text-white"></i>
+      </div>
+      <div class="d-flex flex-column">
+        <span class="opacity-75 text-gray">
+          Seja bem vindo!
+        </span>
+        <span class="fw-bold text-secondary-c">
+          {{ user.username }}
+        </span>
+      </div>
+    </div>
+    <a href="{{ url_for('dashboard.dashboard') }}" class="btn btn-second p-2 rounded-circle position-relative" style="height: 56px;width:56px"
+      type="button">
+      <i class="fa-solid fa-xl fa-arrows-rotate absolute-center"></i>
+    </a>
+</nav>
+
+
+<div class="container pt-5 mt-5">
+  <!-- <a class="text-start" href="{{ url_for('home.index') }}">
+    <button class="btn btn-second">
+      <i class="fa-solid fa-angles-left"></i> LOGOUT
+    </button>
+  </a> -->
+
+  <div class="d-flex justify-content-start align-items-center gap-2 mt-3 mb-3">
+    <a href="{{ url_for('api.exportar_csv') }}" class="btn btn-second-gray"
+      ><i class="fa-solid fa-file-arrow-down fa-lg me-1"></i> CSV</a
+    >
 
     <div class="dropdown">
-      <button class="btn btn-custom dropdown-toggle" type="button" id="filterButton" data-bs-toggle="dropdown" aria-expanded="false">
-        Filtrar por Período
+      <button
+        class="btn btn-second-gray dropdown-toggle"
+        type="button"
+        id="filterButton"
+        data-bs-toggle="dropdown"
+        aria-expanded="false"
+      >
+        Período
       </button>
       <ul class="dropdown-menu" aria-labelledby="filterButton">
-        <li><a class="dropdown-item" href="{{ url_for('dashboard.dashboard', filtro='1hora') }}">Última 1 hora</a></li>
-        <li><a class="dropdown-item" href="{{ url_for('dashboard.dashboard', filtro='1dia') }}">Último 1 dia</a></li>
-        <li><a class="dropdown-item" href="{{ url_for('dashboard.dashboard', filtro='7dias') }}">Últimos 7 dias</a></li>
-        <li><a class="dropdown-item" href="{{ url_for('dashboard.dashboard', filtro='1mes') }}">Último 1 mês</a></li>
+        <li>
+          <a
+            class="dropdown-item"
+            href="{{ url_for('dashboard.dashboard', filtro='1hora') }}"
+            >Última 1 hora</a
+          >
+        </li>
+        <li>
+          <a
+            class="dropdown-item"
+            href="{{ url_for('dashboard.dashboard', filtro='1dia') }}"
+            >Último 1 dia</a
+          >
+        </li>
+        <li>
+          <a
+            class="dropdown-item"
+            href="{{ url_for('dashboard.dashboard', filtro='7dias') }}"
+            >Últimos 7 dias</a
+          >
+        </li>
+        <li>
+          <a
+            class="dropdown-item"
+            href="{{ url_for('dashboard.dashboard', filtro='1mes') }}"
+            >Último 1 mês</a
+          >
+        </li>
       </ul>
     </div>
-    </div>
+  </div>
 
   <h1 class="title text-center">Dashboard</h1>
 
@@ -46,85 +104,138 @@ endblock %} {% block content %}
   <div class="accordion mt-5 border-0 shadow-sm" id="accordionExample">
     <div class="accordion-item border-0">
       <h2 class="accordion-header">
-        <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
+        <button
+          class="accordion-button"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#collapseOne"
+          aria-expanded="false"
+          aria-controls="collapseOne"
+        >
           <h3>Temperatura (°C)</h3>
         </button>
       </h2>
-      <div id="collapseOne" class="accordion-collapse collapse show" data-bs-parent="#accordionExample">
+      <div
+        id="collapseOne"
+        class="accordion-collapse collapse show"
+        data-bs-parent="#accordionExample"
+      >
         <div class="accordion-body">
-         
-           <!-- Gráfico de Temperatura -->
-  <div class="row mt-3">
-    <div class="col">
-      <canvas id="chartTemperatura" class="chart-big"></canvas>
-    </div>
-  </div>
+          <!-- Gráfico de Temperatura -->
+          <div class="row mt-3">
+            <div class="col">
+              <canvas id="chartTemperatura" class="chart-big"></canvas>
+            </div>
+          </div>
         </div>
       </div>
     </div>
     <div class="accordion-item border-0">
       <h2 class="accordion-header">
-        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+        <button
+          class="accordion-button collapsed"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#collapseTwo"
+          aria-expanded="false"
+          aria-controls="collapseTwo"
+        >
           <h3>Umidade (%)</h3>
         </button>
       </h2>
-      <div id="collapseTwo" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+      <div
+        id="collapseTwo"
+        class="accordion-collapse collapse"
+        data-bs-parent="#accordionExample"
+      >
         <div class="accordion-body">
-           <!-- Gráfico de Umidade -->
-  <div class="row mt-3">
-    <div class="col">
-      
-      <canvas id="chartUmidade" class="chart-big"></canvas>
-    </div>
-  </div>
+          <!-- Gráfico de Umidade -->
+          <div class="row mt-3">
+            <div class="col">
+              <canvas id="chartUmidade" class="chart-big"></canvas>
+            </div>
+          </div>
         </div>
       </div>
     </div>
     <div class="accordion-item border-0">
       <h2 class="accordion-header">
-        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+        <button
+          class="accordion-button collapsed"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#collapseThree"
+          aria-expanded="false"
+          aria-controls="collapseThree"
+        >
           <h3>Luminosidade (%)</h3>
         </button>
       </h2>
-      <div id="collapseThree" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+      <div
+        id="collapseThree"
+        class="accordion-collapse collapse"
+        data-bs-parent="#accordionExample"
+      >
         <div class="accordion-body">
-         <!-- Gráfico de Luminosidade -->
-        <div class="row mt-3">
-          <div class="col">
-            
-            <canvas id="chartLuminosidade" class="chart-big"></canvas>
+          <!-- Gráfico de Luminosidade -->
+          <div class="row mt-3">
+            <div class="col">
+              <canvas id="chartLuminosidade" class="chart-big"></canvas>
+            </div>
           </div>
-        </div>
         </div>
       </div>
     </div>
 
     <div class="accordion-item border-0">
       <h2 class="accordion-header">
-        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+        <button
+          class="accordion-button collapsed"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#collapseFour"
+          aria-expanded="false"
+          aria-controls="collapseFour"
+        >
           <h3>Umidade do Solo (%)</h3>
         </button>
       </h2>
-      <div id="collapseFour" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+      <div
+        id="collapseFour"
+        class="accordion-collapse collapse"
+        data-bs-parent="#accordionExample"
+      >
         <div class="accordion-body">
-           <!-- Gráfico de Umidade do Solo -->
-            <div class="row mt-3">
-              <div class="col">
-                <canvas id="chartUmidadeSolo" class="chart-big"></canvas>
-              </div>
+          <!-- Gráfico de Umidade do Solo -->
+          <div class="row mt-3">
+            <div class="col">
+              <canvas id="chartUmidadeSolo" class="chart-big"></canvas>
             </div>
           </div>
         </div>
       </div>
     </div>
   </div>
+</div>
+
+<nav class="nav-bottom">
+  <a href="{{ url_for('home.index') }}" class="btn">
+    <i class="fa-solid fa-house"></i>
+  </a>
+  <a href="{{ url_for('dashboard.dashboard') }}" class="btn">
+    <i class="fa-solid fa-chart-pie"></i>
+  </a>
+  <a href="{{ url_for('auth.login') }}" class="btn">
+    <i class="fa-solid fa-user"></i>
+  </a>
+</nav>
 
 <!-- Estilos CSS -->
 <script>
   // Captura o evento de clique no dropdown e redireciona para a rota com o filtro correto
-  document.querySelectorAll('.dropdown-item').forEach(item => {
-    item.addEventListener('click', function() {
-      const filterDays = this.getAttribute('data-filter'); // Obtém o valor de filtro (1, 7 ou 30)
+  document.querySelectorAll(".dropdown-item").forEach((item) => {
+    item.addEventListener("click", function () {
+      const filterDays = this.getAttribute("data-filter"); // Obtém o valor de filtro (1, 7 ou 30)
       window.location.href = `/dashboard?days=${filterDays}`;
     });
   });
