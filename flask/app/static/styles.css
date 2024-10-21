@@ -26,14 +26,14 @@
 
 body {
     font-family: 'Quicksand', sans-serif;
-    background-color: #F1F3F0;
+    
     color: #4a4a4a;
 }
 
 .block-content {
+    padding-top: 70px;
     display: flex;
     justify-content: center;
-    align-items: center;
     min-height: 100vh;
 }
 
@@ -42,7 +42,6 @@ body {
     max-width: 1200px;
     background-color: white;
     border-radius: 12px;
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
 }
 
 img {
@@ -109,7 +108,6 @@ img {
 
 
 .box-access {
-    max-width: 800px;
 }
 
 .cta-part {
@@ -119,12 +117,13 @@ img {
 
 .nav-bottom {
     position: fixed;
+    max-width: 500px;
     width: 80%;
     transform: translate(-50%, -50%);
     left: 50%;
     padding: 8px 25px;
     border-radius: 50px;
-    background-color: #98d98c;
+    background-color: #275902;
     z-index: 9999;
     bottom: 1%;
     display: flex;
